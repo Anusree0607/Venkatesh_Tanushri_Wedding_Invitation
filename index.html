@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Wedding Video Invite</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Marcellus&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --gold: #c5a059; --deep-red: #821010; --cream: #fffdf9; }
+        
+        body, html { 
+            margin: 0; padding: 0; height: 100%; width: 100%; 
+            overflow: hidden; background: var(--cream); 
+            font-family: 'Marcellus', serif; 
+        }
+
+        .video-container {
+            position: relative; width: 100%; height: 100vh;
+            border: 15px solid var(--cream);
+            box-sizing: border-box;
+            background: var(--cream);
+            display: flex; flex-direction: column;
+        }
+
+        /* Borders & Decor */
+        .outer-border {
+            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 3px solid var(--gold);
+            z-index: 20; pointer-events: none;
+        }
+
+        .corner-decor {
+            position: absolute; width: 180px; height: 180px;
+            background: url('https://www.transparentpng.com/download/mandala/gold-mandala-floral-png-22.png');
+            background-size: contain; background-repeat: no-repeat;
+            z-index: 21; opacity: 0.8;
+        }
+        .top-left { top: -20px; left: -20px; }
+        .top-right { top: -20px; right: -20px; transform: rotate(90deg); }
+        .bottom-left { bottom: -20px; left: -20px; transform: rotate(-90deg); }
+        .bottom-right { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+        /* Introduction Split Screen */
+        .intro-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            opacity: 0; visibility: hidden;
+            z-index: 5;
+        }
+        
+        .intro-img-side {
+            width: 50%; height: 100%;
+            background: url('https://png.pngtree.com/png-clipart/20250217/original/pngtree-traditional-indian-bride-and-groom-vector-illustration-on-wedding-stage-transparent-png-image_20455888.png');
+            background-size: contain; 
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .intro-text-side {
+            width: 50%; height: 100%;
+            background: var(--cream);
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .scene {
+            position: absolute; width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            opacity: 0; visibility: hidden; padding: 40px; box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .intro-text-side .scene { width: 100%; padding: 20px; }
+
+        /* Typography */
+        .shimmer {
+            background: linear-gradient(90deg, #821010, #c5a059, #821010);
+            background-size: 200% auto; -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .names { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: 4rem; 
+            color: var(--deep-red); 
+            margin: 10px 0;
+        }
+        
+        .weds-text { font-family: 'Cinzel Decorative'; font-size: 1.2rem; color: var(--gold); letter-spacing: 5px; }
+        .ganesh-img { width: 280px; margin-bottom: 20px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15)); }
+
+        #petal-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+        .petal { position: absolute; background: #f8c8d3; border-radius: 150% 0 150% 0; opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+<div class="video-container">
+    <div class="outer-border"></div>
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor top-right"></div>
+    <div class="corner-decor bottom-left"></div>
+    <div class="corner-decor bottom-right"></div>
+    <div id="petal-layer"></div>
+
+    <div class="scene" id="scene1">
+        <img src="https://media.istockphoto.com/id/672350552/photo/ganesha.jpg?s=612x612&w=0&k=20&c=V_TAlApkCm6U6xEbYGxEwXWnk1SbgqfzxKcXw995nh8=" class="ganesh-img">
+        <h2 class="shimmer" style="font-family: 'Cinzel Decorative'; letter-spacing: 4px;">Srirastu • Shubhamastu</h2>
+    </div>
+
+    <div class="scene" id="scene2">
+        <p style="color: var(--gold); letter-spacing: 3px;">WEDDING INVITATION</p>
+        <div class="names">Venkateshwar Goud</div>
+        <div class="weds-text">WEDS</div>
+        <div class="names">Tanushri (Akhila)</div>
+    </div>
+
+    <div class="intro-layer" id="introLayer">
+        <div class="intro-img-side"></div>
+        <div class="intro-text-side">
+            <div class="scene" id="scene3">
+                <div class="weds-text">THE GROOM</div>
+                <div class="names" style="font-size: 3.5rem;">Venkateshwar Goud</div>
+                <p style="font-size: 1.1rem; color: #444;">Youngest S/o Smt. & Sri. <br>Bhujaugouni Jayamma -<br> Laxmi Narayana Goud</p>
+            </div>
+
+            <div class="scene" id="scene4">
+                <div class="weds-text">THE BRIDE</div>
+                <div class="names" style="font-size: 3.5rem;">Tanushri (Akhila)</div>
+                <p style="font-size: 1.1rem; color: #444;">D/o Smt. Allari Bhagyalaxmi & <br>Sri. Allari Buchanna Goud</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="scene" id="scene5">
+        <div class="shimmer" style="font-size: 1.5rem; letter-spacing: 5px; font-weight: bold;">SUMUHURTHAM</div>
+        <div style="font-size: 2rem; margin: 20px 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); padding: 10px 0;">
+            Thursday, 05th March 2026
+        </div>
+        <div style="color: var(--deep-red); font-size: 3rem; font-weight: bold; font-family: 'Great Vibes';">11:11 AM</div>
+        <p style="max-width: 300px; margin-top: 20px;"><strong>VENUE:</strong> Anantha Maruthi Function Hall, Mahabubnagar.</p>
+    </div>
+
+    <div class="scene" id="scene6">
+        <div class="shimmer" style="font-size: 1.5rem; letter-spacing: 5px; font-weight: bold;">PRATHANAM</div>
+        <p style="font-size: 1.8rem; margin: 20px 0;">
+            Wednesday, <strong>04th March 2026</strong><br>
+            at 4:30 p.m. Onwards
+        </p>
+        <p style="color: var(--gold);">At Our Residence, Vill. Shakhapur, Mdl. Addakal.</p>
+    </div>
+
+    <div class="scene" id="scene7">
+        <div class="weds-text">BEST COMPLIMENTS FROM</div>
+        <div class="names" style="font-size: 3rem;">Near & Dear</div>
+        <p style="line-height: 1.8; color: #444;">
+            Friends, Family & Well Wishers<br>
+            <strong style="color: var(--deep-red);">Invited By:</strong> Bhujaugouni Family
+        </p>
+    </div>
+</div>
+
+<script>
+    const layer = document.getElementById('petal-layer');
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.width = (Math.random() * 15 + 10) + 'px';
+        p.style.height = p.style.width;
+        layer.appendChild(p);
+        gsap.to(p, { y: '105vh', x: '+=100', rotation: 360, duration: Math.random() * 5 + 7, repeat: -1, delay: Math.random() * 5, ease: "none" });
+    }
+
+    const tl = gsap.timeline({ repeat: -1 });
+    const introLayer = document.getElementById('introLayer');
+
+    function standardScene(id, duration = 3) {
+        tl.to(id, { autoAlpha: 1, duration: 1.5, onStart: () => {
+            gsap.fromTo(id, {scale: 1}, {scale: 1.05, duration: 5});
+        }})
+        .to(id, { autoAlpha: 0, duration: 1.5, delay: duration });
+    }
+
+    // Execution
+    standardScene('#scene1');
+    standardScene('#scene2');
+
+    // Intro Split Sequence
+    tl.to(introLayer, { autoAlpha: 1, duration: 1 }); 
+    
+    tl.fromTo('#scene3', { autoAlpha: 0, x: 50 }, { autoAlpha: 1, x: 0, duration: 1.5 })
+      .to('#scene3', { autoAlpha: 0, x: -50, duration: 1.5, delay: 3 });
+
+    tl.fromTo('#scene4', { autoAlpha: 0, x: 50 }, { autoAlpha: 1, x: 0, duration: 1.5 }, "-=0.5")
+      .to('#scene4', { autoAlpha: 0, x: -50, duration: 1.5, delay: 3 });
+
+    tl.to(introLayer, { autoAlpha: 0, duration: 1 }); 
+
+    standardScene('#scene5');
+    standardScene('#scene6');
+    standardScene('#scene7', 4);
+</script>
+</body>
+</html>
